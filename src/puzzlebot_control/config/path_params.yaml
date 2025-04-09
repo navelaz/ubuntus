@@ -1,0 +1,11 @@
+robot_params:
+  max_linear_speed: 0.2     # m/s
+  max_angular_speed: 0.5    # rad/s
+  wheelbase: 0.3            # m (si el robot tiene cinemática tipo automóvil)
+
+waypoints:
+  - {x: 0.0, y: 0.0}
+  - {x: 2.0, y: 0.0}
+  - {x: 2.0, y: 2.0}
+  - {x: 0.0, y: 2.0}
+  - {x: 0.0, y: 0.0}
