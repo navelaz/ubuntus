@@ -3,6 +3,7 @@ robot_params:
   max_angular_speed: 0.5    # rad/s
   wheelbase: 0.3            # m (si el robot tiene cinemática tipo automóvil)
 
+# Checar ruta
 waypoints:
   - {x: 0.0, y: 0.0}
   - {x: 2.0, y: 0.0}
