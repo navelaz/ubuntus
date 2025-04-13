@@ -11,6 +11,8 @@ class OpenLoopCtrl(Node):
     def __init__(self):
         super().__init__('open_loop_ctrl')
 
+        self.wait_for_ros_time()
+
         self.cmd_vel_pub = self.create_publisher(Twist, 'cmd_vel', 10)
 
         self.state = 0
@@ -29,6 +31,15 @@ class OpenLoopCtrl(Node):
         self.timer = self.create_timer(self.timer_period, self.control_loop)
 
         self.get_logger().info('Open loop square trajectory controller initialized!')
+
+    def wait_for_ros_time(self):
+        self.get_logger().info('Waiting for ROS time to become active...')
+        while rclpy.ok():
+            now = self.get_clock().now()
+            if now.nanoseconds > 0:
+                break
+        rclpy.spin_once(self, timeout_sec=0.1)
+        self.get_logger().info(f'ROS time is active!')
 
     def control_loop(self):
         now = self.get_clock().now()

@@ -1,11 +1,27 @@
 robot_params:
-  max_linear_speed: 0.2     # m/s
-  max_angular_speed: 0.5    # rad/s
-  wheelbase: 0.3            # m (si el robot tiene cinemática tipo automóvil)
+  max_linear_speed: 0.15   # m/s
+  max_angular_speed: 1.4     # rad/s
 
+
+# Cuadrado
+#waypoints:
+#  - {x: 0.0, y: 0.0, theta: 0.0, time: 0.0}                # inicio
+ # - {x: 2.0, y: 0.0, theta: 0.0, time: 13.5}               # recta horizontal
+  #- {x: 2.0, y: 0.0, theta: 1.5708, time: 16.5}            # giro (3 s)
+  #- {x: 2.0, y: 2.0, theta: 1.5708, time: 30.0}            # recta vertical
+  #- {x: 2.0, y: 2.0, theta: 3.1416, time: 33.0}            # giro (3 s)
+  #- {x: 0.0, y: 2.0, theta: 3.1416, time: 46.5}            # recta izquierda
+  #- {x: 0.0, y: 2.0, theta: -1.5708, time: 49.5}           # giro (3 s)
+  #- {x: 0.0, y: 0.0, theta: -1.5708, time: 63.0}           # recta hacia abajo
+  #- {x: 0.0, y: 0.0, theta: 0.0, time: 66.0}               # giro final
+
+
+# Triangulo
 waypoints:
-  - {x: 0.0, y: 0.0}
-  - {x: 2.0, y: 0.0}
-  - {x: 2.0, y: 2.0}
-  - {x: 0.0, y: 2.0}
-  - {x: 0.0, y: 0.0}
+  - {x: 0.0, y: 0.0, theta: 0.0, time: 0.0}                 # A - inicio
+  - {x: 2.0, y: 0.0, theta: 0.0, time: 13.5}                # B - recta derecha
+  - {x: 2.0, y: 0.0, theta: 2.094, time: 16.5}              # giro (3 s aprox 120°)
+  - {x: 1.0, y: 1.732, theta: 2.094, time: 27.5}            # C - recta inclinada
+  - {x: 1.0, y: 1.732, theta: -2.094, time: 30.5}           # giro hacia A
+  - {x: 0.0, y: 0.0, theta: -2.094, time: 41.5}             # A - regreso
+  - {x: 0.0, y: 0.0, theta: 0.0, time: 44.5}                # giro final
