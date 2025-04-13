@@ -83,7 +83,7 @@ class PathPublisher(Node):
         # También para el último punto
         if 'theta' not in self.waypoints[-1] or self.waypoints[-1]['theta'] is None:
             self.waypoints[-1]['theta'] = self.waypoints[-2]['theta']
-
+            
         self.get_logger().info(f'🟢 PathPublisher initialized with {len(self.waypoints)} waypoints.')
         self.publish_next_pose()  # inicializa la primera publicación
 
