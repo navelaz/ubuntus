@@ -91,7 +91,7 @@ class PathPublisher(Node):
         if self.current_index >= len(self.waypoints):
             self.get_logger().info('🥳 Finished publishing all waypoints.')
             return
-
+        ## Publicamos el siguiente waypoint
         wp = self.waypoints[self.current_index]
         msg = PoseStamped()
         msg.header.stamp = self.get_clock().now().to_msg()
