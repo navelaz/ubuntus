@@ -110,12 +110,18 @@ class PathPublisher(Node):
             lin_speed, ang_speed = compute_speeds(wp, next_wp, dt)
             reachable = is_reachable(wp, next_wp, self.max_linear, self.max_angular)
             if reachable:
-                self.get_logger().info(f"🧩 Waypoint {self.current_index} is reachable! (linear: {lin_speed:.2f} m/s, angular: {ang_speed:.2f} rad/s)")
+                self.get_logger().info(
+                    f"🧩 Waypoint {self.current_index} is reachable! (linear: {lin_speed:.2f} m/s, angular: {ang_speed:.2f} rad/s)")
             else:
-                self.get_logger().warning(f"⚠️ Waypoint {self.current_index} is NOT reachable! (linear: {lin_speed:.2f} m/s, angular: {ang_speed:.2f} rad/s)")
+                self.get_logger().error(
+                    f"⛔ Waypoint {self.current_index} is NOT reachable! Aborting mission. (linear: {lin_speed:.2f} m/s, angular: {ang_speed:.2f} rad/s)")
+                self.destroy_node()
+                rclpy.shutdown()
+                return  # ⚠️ ¡Importante! Detenemos aquí la ejecución
         else:
             dt = 0.0
             lin_speed, ang_speed = 0.0, 0.0
+
 
         # Codificamos velocidades y duración en los campos restantes de orientación
         msg.pose.orientation.x = lin_speed
