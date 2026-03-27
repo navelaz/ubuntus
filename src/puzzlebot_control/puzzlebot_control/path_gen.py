@@ -48,10 +48,11 @@ def is_reachable(p1, p2, max_linear_speed, max_angular_speed):
 
 
 def compute_speeds(p1, p2, time):
+    ## Calcula las velocidades lineales y angulares entre dos puntos
     dx = p2['x'] - p1['x']
     dy = p2['y'] - p1['y']
     dtheta = normalize_angle(p2['theta'] - p1['theta'])
-
+    ## Calcula la distancia y el ángulo entre los puntos
     linear_speed = math.hypot(dx, dy) / time if time > 0 else 0.0
     angular_speed = dtheta / time if time > 0 else 0.0
     return linear_speed, angular_speed
@@ -82,7 +83,7 @@ class PathPublisher(Node):
         # También para el último punto
         if 'theta' not in self.waypoints[-1] or self.waypoints[-1]['theta'] is None:
             self.waypoints[-1]['theta'] = self.waypoints[-2]['theta']
-
+            
         self.get_logger().info(f'🟢 PathPublisher initialized with {len(self.waypoints)} waypoints.')
         self.publish_next_pose()  # inicializa la primera publicación
 
@@ -90,7 +91,7 @@ class PathPublisher(Node):
         if self.current_index >= len(self.waypoints):
             self.get_logger().info('🥳 Finished publishing all waypoints.')
             return
-
+        ## Publicamos el siguiente waypoint
         wp = self.waypoints[self.current_index]
         msg = PoseStamped()
         msg.header.stamp = self.get_clock().now().to_msg()
